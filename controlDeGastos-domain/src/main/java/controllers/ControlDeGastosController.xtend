@@ -27,7 +27,7 @@ class ControlDeGastosController {
 			response.contentType = ContentType.APPLICATION_JSON
 			ok(EditorDeObjetos.getInstance.datosParaUsuario(usuario).toJson)
 		} catch (Exception e) {
-			badRequest(e.message)
+			notFound(e.message)
 		}
 	}
 	
@@ -57,38 +57,44 @@ class ControlDeGastosController {
 		try{
 			response.contentType = ContentType.APPLICATION_JSON
 			var idUsuario = Integer.valueOf(id)
+			var descripcionABuscar= String.valueOf(descripcion)
 			var gastos = RepoUsuarios.getInstance.obtenerGastosPara(idUsuario)
-			var gastosFiltrados = RepoUsuarios.getInstance.filtrarGastosDeTipo(gastos,descripcion.toString)
+			var gastosFiltrados = RepoUsuarios.getInstance.filtrarGastosPorDescripcion(gastos,descripcionABuscar)
 		
 			ok(EditorDeObjetos.getInstance.gastosParaMostrar(gastosFiltrados).toJson)	
 		}catch(Exception e){
 			notFound(e.message)
 		}
 	}
-
-	@Get("/pruebaDeInflacion/:id/:descripcion/:anio") //Obtener los dtos inflacionarios
-	def Result pruebaDeInflacion() {  
+	
+	@Get("/datosInflacionarios/:id/:descripcion/:anio") 
+	def Result datosDeInflacion() {   
 		try{
 			response.contentType = ContentType.APPLICATION_JSON
 			var idUsuario = Integer.valueOf(id)
-			var gastos = RepoUsuarios.getInstance.obtenerGastosPara(idUsuario)
-			var respuesta = RepoUsuarios.getInstance.filtrarGastosDeTipo(gastos,descripcion.toString)
+			var descripcionABuscar = String.valueOf(descripcion)
+			var anioABuscar = String.valueOf(anio)
+			var detalleDeInflacion =
+						RepoUsuarios.getInstance.obtenerDatosDeInflacion(idUsuario, descripcionABuscar,anioABuscar)
 		
-			ok(respuesta.toJson)	
+			ok(detalleDeInflacion.toJson)	
 		}catch(Exception e){
-			notFound(e.message)
+			badRequest(e.message)
 		}
+	}
+	
+	@Get("/prueba/:id")
+	def Result pruebaParaVerFechasDetalladas() {
+		val gastos = RepoUsuarios.getInstance.getUsuarioById(Integer.valueOf(id)).gastos
+		response.contentType = ContentType.APPLICATION_JSON
+		ok(gastos.sortInplaceBy[fecha.monthValue].toJson)
 	}
 		
 	@Get("/usuarios")
 	def Result pruebaObtenerUsuarios() {
-		try{
 		val usuarios = RepoUsuarios.getInstance.usuarios
 		response.contentType = ContentType.APPLICATION_JSON
-		ok(EditorDeObjetos.getInstance.reducirUsuarios(usuarios).toJson)}
-		catch(Exception e){
-			
-		}
+		ok(EditorDeObjetos.getInstance.reducirUsuarios(usuarios).toJson)
 	}
 	
 	def static void main(String[] args) {

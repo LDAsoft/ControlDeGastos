@@ -10,14 +10,14 @@ import org.eclipse.xtext.xbase.lib.Pure;
 public class GastoParaMostrar {
   private String descripcion;
   
-  private float monto;
+  private Double monto;
   
   private String fecha;
   
   public GastoParaMostrar(final Gasto unGasto) {
     String _descripcion = unGasto.getDescripcion();
     this.descripcion = _descripcion;
-    float _monto = unGasto.getMonto();
+    Double _monto = unGasto.getMonto();
     this.monto = _monto;
     LocalDate _fecha = unGasto.getFecha();
     String _string = _fecha.toString();
@@ -34,11 +34,11 @@ public class GastoParaMostrar {
   }
   
   @Pure
-  public float getMonto() {
+  public Double getMonto() {
     return this.monto;
   }
   
-  public void setMonto(final float monto) {
+  public void setMonto(final Double monto) {
     this.monto = monto;
   }
   

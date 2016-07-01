@@ -6,7 +6,7 @@ import controlDeGastosDomain.Gasto
 @Accessors
 class GastoParaMostrar {
 	String descripcion;
-	float monto;
+	Double monto;
 	String fecha;
 	
 	new(Gasto unGasto){ 

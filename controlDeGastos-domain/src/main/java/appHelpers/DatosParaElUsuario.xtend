@@ -9,11 +9,15 @@ class DatosParaElUsuario {
 	Integer idUsuario
 	String nombreDeUsuario
 	List<GastoParaMostrar> gastos
+	Double gastoTotal;
 	
-	new(Usuario unUsuario, List<GastoParaMostrar> gastos){
+	
+	new(Usuario unUsuario, List<GastoParaMostrar> gastos, Double total){
 		this.nombreDeUsuario = unUsuario.nombreDeUsuario
-		this.gastos = gastos
 		this.idUsuario=unUsuario.idUsuario
+		
+		this.gastos = gastos
+		this.gastoTotal=total
 	}
 	
 }
