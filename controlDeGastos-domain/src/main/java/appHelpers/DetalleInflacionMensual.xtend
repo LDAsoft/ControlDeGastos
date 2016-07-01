@@ -12,7 +12,12 @@ class DetalleInflacionMensual {
 	new(Gasto unGasto, Double indiceMensual) {
 		this.mes = unGasto.fecha.month.toString
 		this.monto = unGasto.monto
-		this.indiceMensual = indiceMensual
+		
+		this.indiceMensual = redondear(indiceMensual)
+	}
+		
+	def double redondear(double numero){
+       return Math.rint(numero*100)/100;
 	}
 	
 }

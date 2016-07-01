@@ -9,6 +9,7 @@ import exceptions.ErrorAlRegistrarse
 import exceptions.ErrorLogin
 import java.util.Collections
 import java.util.ArrayList
+import java.text.DecimalFormat
 
 class RepoUsuarios {
 
@@ -120,8 +121,6 @@ class RepoUsuarios {
 	 * (mes, monto, indiceMensual con respecto al mes anterior)
 	 */
 	def obtenerDatosDeInflacion(Integer idUsuario, String descripcionABuscar, String anioABuscar) {
-		//luego voy creando una lista de DetalleInflacionMensual, 
-		//para meterla en DetalleInflacionAnual junto con el total mes, indice mensual y monto
 		var gastosFilterByDescripcion = filtrarGastosPorDescripcion(obtenerGastosPara(idUsuario),descripcionABuscar)
 		var gastos = filtrarGastosPorAnio(gastosFilterByDescripcion, anioABuscar)
 		new DetalleInflacionAnual(detallesInflacionMensual(gastos))
@@ -146,7 +145,8 @@ class RepoUsuarios {
 	}		
 	
 	def calculoInflacion(Double montoAnterior, Double montoActual) {
-		montoActual - montoAnterior/montoAnterior*100
+	
+		(montoActual - montoAnterior)/montoAnterior*100
 	}
 	
 	

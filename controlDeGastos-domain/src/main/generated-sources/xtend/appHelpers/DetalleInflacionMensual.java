@@ -22,7 +22,13 @@ public class DetalleInflacionMensual {
     this.mes = _string;
     Double _monto = unGasto.getMonto();
     this.monto = _monto;
-    this.indiceMensual = indiceMensual;
+    double _redondear = this.redondear((indiceMensual).doubleValue());
+    this.indiceMensual = Double.valueOf(_redondear);
+  }
+  
+  public double redondear(final double numero) {
+    double _rint = Math.rint((numero * 100));
+    return (_rint / 100);
   }
   
   @Pure
