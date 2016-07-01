@@ -1,7 +1,6 @@
 package appHelpers
 
 import java.util.List
-import controlDeGastosDomain.Gasto
 import controlDeGastosDomain.Usuario
 import org.eclipse.xtend.lib.annotations.Accessors
 
@@ -9,11 +8,12 @@ import org.eclipse.xtend.lib.annotations.Accessors
 class DatosParaElUsuario {
 	Integer idUsuario
 	String nombreDeUsuario
-	List<Gasto> gastos
+	List<GastoParaMostrar> gastos
 	
-	new(Usuario unUsuario){
+	new(Usuario unUsuario, List<GastoParaMostrar> gastos){
 		this.nombreDeUsuario = unUsuario.nombreDeUsuario
-		this.gastos = unUsuario.gastos
+		this.gastos = gastos
 		this.idUsuario=unUsuario.idUsuario
 	}
+	
 }

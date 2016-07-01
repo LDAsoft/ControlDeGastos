@@ -10,9 +10,9 @@ import org.uqbar.xtrest.api.annotation.Put
 import appHelpers.RepoUsuarios
 import org.uqbar.xtrest.api.annotation.Body
 import appHelpers.UsuarioLogin
-import appHelpers.DatosParaElUsuario
 import org.uqbar.xtrest.http.ContentType
 import appHelpers.GastoNuevo
+import appHelpers.EditorDeObjetos
 
 @Controller
 class ControlDeGastosController {
@@ -25,7 +25,7 @@ class ControlDeGastosController {
 			val UsuarioLogin usuarioLogin = body.fromJson(UsuarioLogin) 
 			val usuario = RepoUsuarios.getInstance.login(usuarioLogin.user, usuarioLogin.pass)
 			response.contentType = ContentType.APPLICATION_JSON
-			ok(new DatosParaElUsuario(usuario).toJson)
+			ok(EditorDeObjetos.getInstance.datosParaUsuario(usuario).toJson)
 		} catch (Exception e) {
 			badRequest(e.message)
 		}
@@ -37,7 +37,7 @@ class ControlDeGastosController {
 			val UsuarioLogin usuarioLogin = body.fromJson(UsuarioLogin) 
 			val usuario = RepoUsuarios.getInstance.registrarUsuario(usuarioLogin.user, usuarioLogin.pass)
 			response.contentType = ContentType.APPLICATION_JSON
-			ok(new DatosParaElUsuario(usuario).toJson)				
+			ok(EditorDeObjetos.getInstance.datosParaUsuario(usuario).toJson)				
 		}catch (Exception e) {
 			badRequest(e.message)
 		}
@@ -49,7 +49,7 @@ class ControlDeGastosController {
 		RepoUsuarios.getInstance.registrarGasto(nuevoGasto)
 		val refreshGastos = RepoUsuarios.getInstance.obtenerGastosPara(nuevoGasto.idUsuario)
 		response.contentType = ContentType.APPLICATION_JSON
-		ok(refreshGastos.toJson)
+		ok(EditorDeObjetos.getInstance.gastosParaMostrar(refreshGastos).toJson)
 	}
 	
 	@Get("/gastos/:id/:descripcion") 
@@ -58,9 +58,9 @@ class ControlDeGastosController {
 			response.contentType = ContentType.APPLICATION_JSON
 			var idUsuario = Integer.valueOf(id)
 			var gastos = RepoUsuarios.getInstance.obtenerGastosPara(idUsuario)
-			var respuesta = RepoUsuarios.getInstance.filtrarGastosDeTipo(gastos,descripcion.toString)
+			var gastosFiltrados = RepoUsuarios.getInstance.filtrarGastosDeTipo(gastos,descripcion.toString)
 		
-			ok(respuesta.toJson)	
+			ok(EditorDeObjetos.getInstance.gastosParaMostrar(gastosFiltrados).toJson)	
 		}catch(Exception e){
 			notFound(e.message)
 		}
@@ -81,11 +81,11 @@ class ControlDeGastosController {
 	}
 		
 	@Get("/usuarios")
-	def Result usuarios() {
+	def Result pruebaObtenerUsuarios() {
 		try{
 		val usuarios = RepoUsuarios.getInstance.usuarios
 		response.contentType = ContentType.APPLICATION_JSON
-		ok(usuarios.toJson)}
+		ok(EditorDeObjetos.getInstance.reducirUsuarios(usuarios).toJson)}
 		catch(Exception e){
 			
 		}
@@ -94,79 +94,4 @@ class ControlDeGastosController {
 	def static void main(String[] args) {
         XTRest.start(ControlDeGastosController, 9000)
     }
-	
-//
-//	@Get("/realizarAccion/:idUser/:idHab/:idAcc")
-//	def Result realizarAccionEnHabitacion() {
-//		
-//		response.contentType = "application/json"
-//		
-//		val idHabitacion = Integer.valueOf(idHab)
-//		val idAccion = Integer.valueOf(idAcc)
-//		val idUsuario = Integer.valueOf(idUser)
-//
-//		try{
-//			ok(realizarAccion(idUsuario, idHabitacion, idAccion).toJson)
-//		} catch (UserException e) {
-//			notFound(e.message);
-//		}
-//	}
-//
-//    def realizarAccion(Integer idUsuario, Integer idHabitacion, Integer idAccion){
-//        minificador.minificar(repoDeObjetos.accion(idUsuario, idHabitacion, idAccion))
-//    }
-//
-//	@Get('/inventario/:idUsuario')
-//	def inventario(){
-//		response.contentType = "application/json"
-//
-//		val iIdUsuario = Integer.valueOf(idUsuario)
-//
-//		try{
-//			ok(inventario(iIdUsuario).getItems().toJson)
-//		} catch (UserException e) {
-//			notFound(e.message);
-//		}
-//	}
-//
-//	def inventario(Integer idUsuario){
-//		repoDeObjetos.inventario(idUsuario)
-//	}
-//
-//	@Put('/tirarInventario/:idUsuario')
-//	def tirarInventario(){
-//		response.contentType = "application/json"
-//
-//		val iIdUsuario = Integer.valueOf(idUsuario)
-//
-//		try{
-//			tirarInventario(iIdUsuario)
-//			ok()
-//		} catch (UserException e) {
-//			notFound(e.message);
-//		}
-//
-//	}
-//
-//	def tirarInventario(Integer idUsuario){
-//		repoDeObjetos.tirarInventario(idUsuario)
-//	}
-//
-//	@Post('/login/:nombreUsuario/:password')
-//	def Result login() {
-//		val usuario = String.valueOf(nombreUsuario)
-//		val pass = String.valueOf(password)
-//
-//		try {
-//
-//			repoDeObjetos.login(usuario, pass)
-//			ok();
-//		} catch (UserException e) {
-//			forbidden(e.message)
-//		}
-//	}
-//
-//    def static void main(String[] args) {
-//        XTRest.start(LaberintosController, 9000)
-//    }
 }

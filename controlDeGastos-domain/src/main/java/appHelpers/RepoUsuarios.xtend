@@ -95,7 +95,7 @@ class RepoUsuarios {
     }
     
     def registrarGasto(GastoNuevo nuevoGasto) {
-		var fechaActual = LocalDate.now.toString
+		var fechaActual = LocalDate.now
 		var gasto = new Gasto(nuevoGasto.descripcion,nuevoGasto.monto,fechaActual)
 		getUsuarioById(nuevoGasto.idUsuario).agregarGasto(gasto)
 	}
@@ -129,25 +129,25 @@ class RepoUsuarios {
     }
 
     private def gastosDeMarcos(){
-        var direcTv = new Gasto("DirectTv", 540, "29/06/2016")//LocalDate.now());
-        var luz = new Gasto("Luz", 1500, "27/01/2016")//LocalDate.of(2016,01,27));
-        var gas = new Gasto("Gas", 1650, "28/03/2016")
+        var direcTv = new Gasto("DirectTv", 540, LocalDate.now())
+        var luz = new Gasto("Luz", 1500, LocalDate.of(2016,01,27))
+        var gas = new Gasto("Gas", 1650, LocalDate.of(2016,01,27))
         
         newArrayList(direcTv,luz, gas)   
     }
     
     private def gastosDeDaniel(){
-        var cableVision = new Gasto("CableVision", 670, "29/06/2016")
-        var agua = new Gasto("Agua", 90, "29/06/2016")
-        var seguroAutomotor = new Gasto("Seguro Automotor", 1200, "29/06/2016")
+        var cableVision = new Gasto("CableVision", 670, LocalDate.of(2016,01,27))
+        var agua = new Gasto("Agua", 90, LocalDate.of(2016,01,27))
+        var seguroAutomotor = new Gasto("Seguro Automotor", 1200, LocalDate.of(2016,01,27))
         
         newArrayList(cableVision,agua, seguroAutomotor)   
     }
     
     private def gastosDeAlvarenga(){
-        var teleCentro = new Gasto("TeleCentro", 400, "29/06/2016")
-        var luz = new Gasto("Luz", 1600, "29/06/2016")
-        var agua = new Gasto("Agua", 500, "29/06/2016")
+        var teleCentro = new Gasto("TeleCentro", 400, LocalDate.of(2016,01,27))
+        var luz = new Gasto("Luz", 1600, LocalDate.of(2016,01,27))
+        var agua = new Gasto("Agua", 500, LocalDate.of(2016,01,27))
         
         newArrayList(teleCentro,luz, agua)   
     }	
