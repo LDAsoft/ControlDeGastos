@@ -7,9 +7,8 @@ import java.time.LocalDate
 import exceptions.ErrorDeFiltro
 import exceptions.ErrorAlRegistrarse
 import exceptions.ErrorLogin
-import java.util.Collections
-import java.util.ArrayList
-import java.text.DecimalFormat
+import controlDeGastosDomain.DetalleInflacionMensual
+import controlDeGastosDomain.DetalleInflacionAnual
 
 class RepoUsuarios {
 
@@ -144,8 +143,7 @@ class RepoUsuarios {
 		listaDetallada
 	}		
 	
-	def calculoInflacion(Double montoAnterior, Double montoActual) {
-	
+	def calculoInflacion(Double montoAnterior, Double montoActual) {	
 		(montoActual - montoAnterior)/montoAnterior*100
 	}
 	

@@ -1,8 +1,8 @@
 package appHelpers.test;
 
-import appHelpers.DetalleInflacionAnual;
-import appHelpers.DetalleInflacionMensual;
 import appHelpers.RepoUsuarios;
+import controlDeGastosDomain.DetalleInflacionAnual;
+import controlDeGastosDomain.DetalleInflacionMensual;
 import java.util.List;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.junit.Before;
@@ -15,7 +15,7 @@ public class TestRepoUsuarios {
   }
   
   @Test
-  public void testRapidoGasto() {
+  public void testRapidoParaVerDetalleDeInflacion() {
     DetalleInflacionMensual detalle = null;
     String mes = null;
     Double monto = null;
@@ -80,9 +80,5 @@ public class TestRepoUsuarios {
     Double _indiceMensual_4 = detalle.getIndiceMensual();
     indice = _indiceMensual_4;
     InputOutput.<String>println(((((("mes: " + mes) + "____monto:  ") + monto) + "____indice:  ") + indice));
-  }
-  
-  @Test
-  public void EliminoGastoGasEntoncesLengthDeGastosEs2() {
   }
 }
