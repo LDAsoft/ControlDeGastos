@@ -132,32 +132,28 @@ class RepoUsuarios {
 		var i = 0
 		var listaDetallada = newArrayList()
 		
-		while (i<=gastos.length) {
-			if(gastos.indexOf(i) == ){
-				new DetalleInflacionMensual() 	
+		while (i<gastos.length) {
+			var Double indiceMensual
+			if(i == 0){
+				indiceMensual = calculoInflacion(gastos.get(i).monto, gastos.get(i).monto) 	
+			}else{
+				indiceMensual = calculoInflacion(gastos.get(i-1).monto, gastos.get(i).monto)
 			}
-				
-			[("2016/03/23", )]
-			
+			listaDetallada.add(new DetalleInflacionMensual(gastos.get(i), indiceMensual))
 			i++
 		}
-			var 
-			if (gasto.fecha.monthValue == 1){
-				
-			}
-		}
-				
-		
-		
-		new DetalleInflacionMensual()
-		var List(DetalleInflacionMensual) r = new ArrayList
-		
+		listaDetallada
+	}		
+	
+	def calculoInflacion(Double montoAnterior, Double montoActual) {
+		montoActual - montoAnterior/montoAnterior*100
 	}
+	
 	
 	def filtrarGastosPorAnio(List<Gasto> gastos, String anio) {
 		var List<Gasto> gastosFiltrados = gastos.filter[gasto | gasto.esMismoAnio(anio)].toList
 		if(gastosFiltrados.empty){
-			throw new ErrorDeFiltro("No existen datos para el anio" + anio)
+			throw new ErrorDeFiltro("No existen datos para el anio " + anio)
 		}
 		gastosFiltrados
 	}
@@ -194,10 +190,14 @@ class RepoUsuarios {
     }
     
     private def gastosDeAlvarenga(){
-        var teleCentro = new Gasto("TeleCentro", 400.0, LocalDate.of(2016,01,27))
-        var luz = new Gasto("Luz", 1600.0, LocalDate.of(2016,01,27))
-        var agua = new Gasto("Agua", 500.0, LocalDate.of(2016,01,27))
+        var teleCentro = new Gasto("TeleCentro", 400.0, LocalDate.of(2016,03,27))
+        var luz = new Gasto("Luz", 1600.0, LocalDate.of(2016,02,27))
+        var agua1 = new Gasto("Agua", 700.0, LocalDate.of(2016,07,27))
+        var agua2 = new Gasto("Agua", 500.0, LocalDate.of(2016,01,27))
+        var agua3 = new Gasto("Agua", 780.0, LocalDate.of(2016,12,27))
+        var agua4 = new Gasto("Agua", 550.0, LocalDate.of(2016,02,27))
+        var agua5 = new Gasto("Agua", 570.0, LocalDate.of(2016,04,27))
         
-        newArrayList(teleCentro,luz, agua)   
+        newArrayList(teleCentro,luz, agua1,agua2,agua3,agua4,agua5)   
     }	
 }

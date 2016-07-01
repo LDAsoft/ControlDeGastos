@@ -79,7 +79,7 @@ class ControlDeGastosController {
 		
 			ok(detalleDeInflacion.toJson)	
 		}catch(Exception e){
-			badRequest(e.message)
+			notFound(e.message)
 		}
 	}
 	

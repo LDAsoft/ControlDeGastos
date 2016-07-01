@@ -1,5 +1,8 @@
 package appHelpers;
 
+import controlDeGastosDomain.Gasto;
+import java.time.LocalDate;
+import java.time.Month;
 import org.eclipse.xtend.lib.annotations.Accessors;
 import org.eclipse.xtext.xbase.lib.Pure;
 
@@ -12,7 +15,14 @@ public class DetalleInflacionMensual {
   
   private Double monto;
   
-  public DetalleInflacionMensual() {
+  public DetalleInflacionMensual(final Gasto unGasto, final Double indiceMensual) {
+    LocalDate _fecha = unGasto.getFecha();
+    Month _month = _fecha.getMonth();
+    String _string = _month.toString();
+    this.mes = _string;
+    Double _monto = unGasto.getMonto();
+    this.monto = _monto;
+    this.indiceMensual = indiceMensual;
   }
   
   @Pure
