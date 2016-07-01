@@ -18,4 +18,4 @@ xtend-gen
 .classpath
 .settings
 /src/main/webapp/node_modules
-/src/main/generated-resources
+/src/main/generated-sources
