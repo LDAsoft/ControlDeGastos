@@ -5,15 +5,18 @@ import java.time.LocalDate
 
 @Accessors
 class Gasto {
-	
 	String descripcion;
-	float monto;
+	Double monto;
 	LocalDate fecha;
 	
-	new(String descripcion, float monto, LocalDate fecha){ 
+	new(String descripcion, Double monto, LocalDate fecha){ 
 		this.descripcion = descripcion
 		this.monto = monto
 		this.fecha = fecha
+	}
+	
+	def esMismoAnio(String anio) {
+		this.fecha.year.toString == anio
 	}
 	
 }

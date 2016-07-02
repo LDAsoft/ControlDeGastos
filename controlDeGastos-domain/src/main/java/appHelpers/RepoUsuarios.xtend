@@ -7,6 +7,8 @@ import java.time.LocalDate
 import exceptions.ErrorDeFiltro
 import exceptions.ErrorAlRegistrarse
 import exceptions.ErrorLogin
+import controlDeGastosDomain.DetalleInflacionMensual
+import controlDeGastosDomain.DetalleInflacionAnual
 
 class RepoUsuarios {
 
@@ -104,14 +106,55 @@ class RepoUsuarios {
 		getUsuarioById(unUsuarioId).gastos		
 	}
 	
-	def filtrarGastosDeTipo(List<Gasto> gastos, String descripcion) {
+	def filtrarGastosPorDescripcion(List<Gasto> gastos, String descripcion) {
 		var List<Gasto> gastosFiltrados = gastos.filter[gasto | gasto.descripcion == descripcion].toList
 		if(gastosFiltrados.empty){
-			throw new ErrorDeFiltro("No existen datos para esa descripcion")
+			throw new ErrorDeFiltro("No existen datos para " + descripcion)
 		}
 		gastosFiltrados
 	}
 	
+	/**
+	 * Retorna el indice calculado en un Double que seria la suma de indiceMensual
+	 * Y retorna la "explicacion" o detalle mes a mes, en un "tripla" del tipo 
+	 * (mes, monto, indiceMensual con respecto al mes anterior)
+	 */
+	def obtenerDatosDeInflacion(Integer idUsuario, String descripcionABuscar, String anioABuscar) {
+		var gastosFilterByDescripcion = filtrarGastosPorDescripcion(obtenerGastosPara(idUsuario),descripcionABuscar)
+		var gastos = filtrarGastosPorAnio(gastosFilterByDescripcion, anioABuscar)
+		new DetalleInflacionAnual(detallesInflacionMensual(gastos))
+	}
+	
+	def detallesInflacionMensual(List<Gasto> gastos) {
+		gastos.sortInplaceBy[fecha.monthValue]
+		var i = 0
+		var listaDetallada = newArrayList()
+		
+		while (i<gastos.length) {
+			var Double indiceMensual
+			if(i == 0){
+				indiceMensual = calculoInflacion(gastos.get(i).monto, gastos.get(i).monto) 	
+			}else{
+				indiceMensual = calculoInflacion(gastos.get(i-1).monto, gastos.get(i).monto)
+			}
+			listaDetallada.add(new DetalleInflacionMensual(gastos.get(i), indiceMensual))
+			i++
+		}
+		listaDetallada
+	}		
+	
+	def calculoInflacion(Double montoAnterior, Double montoActual) {	
+		(montoActual - montoAnterior)/montoAnterior*100
+	}
+	
+	
+	def filtrarGastosPorAnio(List<Gasto> gastos, String anio) {
+		var List<Gasto> gastosFiltrados = gastos.filter[gasto | gasto.esMismoAnio(anio)].toList
+		if(gastosFiltrados.empty){
+			throw new ErrorDeFiltro("No existen datos para el anio " + anio)
+		}
+		gastosFiltrados
+	}
 	
     new(){
         usuarios = armarUsuarios()
@@ -129,26 +172,30 @@ class RepoUsuarios {
     }
 
     private def gastosDeMarcos(){
-        var direcTv = new Gasto("DirectTv", 540, LocalDate.now())
-        var luz = new Gasto("Luz", 1500, LocalDate.of(2016,01,27))
-        var gas = new Gasto("Gas", 1650, LocalDate.of(2016,01,27))
+        var direcTv = new Gasto("DirectTv", 540.0, LocalDate.now())
+        var luz = new Gasto("Luz", 1500.0, LocalDate.of(2016,12,27))
+        var gas = new Gasto("Gas", 1650.0, LocalDate.of(2016,03,27))
         
         newArrayList(direcTv,luz, gas)   
     }
     
     private def gastosDeDaniel(){
-        var cableVision = new Gasto("CableVision", 670, LocalDate.of(2016,01,27))
-        var agua = new Gasto("Agua", 90, LocalDate.of(2016,01,27))
-        var seguroAutomotor = new Gasto("Seguro Automotor", 1200, LocalDate.of(2016,01,27))
+        var cableVision = new Gasto("CableVision", 670.0, LocalDate.of(2016,01,27))
+        var agua = new Gasto("Agua", 90.0, LocalDate.of(2016,01,27))
+        var seguroAutomotor = new Gasto("Seguro Automotor", 1200.0, LocalDate.of(2016,01,27))
         
         newArrayList(cableVision,agua, seguroAutomotor)   
     }
     
     private def gastosDeAlvarenga(){
-        var teleCentro = new Gasto("TeleCentro", 400, LocalDate.of(2016,01,27))
-        var luz = new Gasto("Luz", 1600, LocalDate.of(2016,01,27))
-        var agua = new Gasto("Agua", 500, LocalDate.of(2016,01,27))
+        var teleCentro = new Gasto("TeleCentro", 400.0, LocalDate.of(2016,03,27))
+        var luz = new Gasto("Luz", 1600.0, LocalDate.of(2016,02,27))
+        var agua1 = new Gasto("Agua", 700.0, LocalDate.of(2016,07,27))
+        var agua2 = new Gasto("Agua", 500.0, LocalDate.of(2016,01,27))
+        var agua3 = new Gasto("Agua", 780.0, LocalDate.of(2016,12,27))
+        var agua4 = new Gasto("Agua", 550.0, LocalDate.of(2016,02,27))
+        var agua5 = new Gasto("Agua", 570.0, LocalDate.of(2016,04,27))
         
-        newArrayList(teleCentro,luz, agua)   
+        newArrayList(teleCentro,luz, agua1,agua2,agua3,agua4,agua5)   
     }	
 }

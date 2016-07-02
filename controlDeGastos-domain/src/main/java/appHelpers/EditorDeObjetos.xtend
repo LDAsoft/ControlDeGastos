@@ -13,11 +13,15 @@ class EditorDeObjetos {
 	}
 	
 	def datosParaUsuario(Usuario usuario) {
-		new DatosParaElUsuario(usuario, gastosParaMostrar(usuario.gastos))
+		new DatosParaElUsuario(usuario, reducirGastos(usuario.gastos), montoTotal(usuario.gastos))
+	}
+	
+	def montoTotal(List<Gasto> gastos) {
+		gastos.stream.mapToDouble[gasto | gasto.monto].sum
 	}
 	
 	def gastosParaMostrar(List<Gasto> gastos) {
-		reducirGastos(gastos)
+		new GastosYTotal(reducirGastos(gastos), montoTotal(gastos))
 	}
 		
 	private def reducirGastos(List<Gasto> gastosParaEditar){

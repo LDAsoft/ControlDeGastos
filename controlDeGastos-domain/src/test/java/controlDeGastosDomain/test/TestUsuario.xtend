@@ -17,15 +17,30 @@ class TestUsuario {
 	
 	@Before
 	def void setUp(){
-		this.direcTv= new Gasto("DirecTv", 600, LocalDate.of(2016,01,27))
-		this.gas = new Gasto("Gas", 1600, LocalDate.of(2016,01,27))
-		this.agua = new Gasto("Agua", 200, LocalDate.of(2016,01,27))
+		this.direcTv= new Gasto("DirecTv", 600.0, LocalDate.of(2016,01,27))
+		this.gas = new Gasto("Gas", 1600.0, LocalDate.of(2016,01,27))
+		this.agua = new Gasto("Agua", 200.9, LocalDate.of(2016,01,27))
 		
 		this.marcos = new Usuario(1,"marcos", "marcos1")
 		this.marcos.setGastos(newArrayList(direcTv,gas,agua))
 		
-		this.cine = new Gasto("Cine 4D x 2", 440, LocalDate.of(2016,01,27))
+		this.cine = new Gasto("Cine 4D x 2", 440.9, LocalDate.of(2016,01,27))
 	}
+	
+	@Test
+    def void testRapidoGasto(){
+        assertThat(this.gas.esMismoAnio("2015")).^false
+    }
+    
+    @Test
+    def void testRapidoGasto2(){
+        assertThat(this.gas.esMismoAnio("2012")).^false
+    }
+    
+    @Test
+    def void testRapidoGasto3(){
+        assertThat(this.gas.esMismoAnio("2016")).^true
+    }
 	
 	@Test
     def void elLengthDeLosGastosDeMarcosEs3(){
