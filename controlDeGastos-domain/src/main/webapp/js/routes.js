@@ -11,12 +11,6 @@ gastosApp.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'UsuarioController'
     })
 
-    .state('lobbyOld', {
-      url: '/lobbyOld',
-      templateUrl: 'templates/mainPage.html',
-      controller: 'MainController'
-    })
-
     .state('registro', {
       url: '/registracion',
       templateUrl: 'templates/registroUsuario.html',
@@ -28,8 +22,10 @@ gastosApp.config(function ($stateProvider, $urlRouterProvider) {
       views: {
         '': { templateUrl: 'templates/mainPage.html', controller: 'MainController' },
         'panelIzq@lobby': { 
-          template: '<div><h2>Aca va lo de agregar nuevo gasto</h2></div>', controller: 'MainController'
+          templateUrl: 'templates/panelIzq.html', controller: 'MainController'
         },
+
+
         'panelCentral@lobby': { 
           template:'<div><h3>Aca va lo de buscar gasto por filtro y la tabla del detalle</h3></div>',controller: 'MainController'
         },

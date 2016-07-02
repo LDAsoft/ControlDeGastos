@@ -1,28 +1,44 @@
-gastosApp.controller("UsuarioController", function (usuariosService,$state,$scope) {
+gastosApp.controller("UsuarioController", function (mainService,$state,$scope) {
 
-    var self = this;
-    
-    self.usuarioABuscar = {
-        user : "marcos",
-        pass : "12345"
+    this.ingresar = function (findUser) {
+        mainService.ingresar(findUser, function(usuarioObtenido){
+            if(usuarioObtenido !== null){
+                //mainService.datosDelUsuario(usuarioObtenido.data);
+                console.log (usuarioObtenido.data);
+                //$state.go("lobby");
+            }
+
+        },notificarError);
     };
 
-    $scope.irARegistro = function() {
-        $state.go("registro");
-    };
-
-    $scope.ingresar = function () {
-        usuariosService.obtener(self.usuarioABuscar, function(usuario){
-            if(usuario !== null){
-                $state.go("lobby");
-                console.log (usuario);
+    this.registrar = function (userToRegister) {
+        mainService.registrar(userToRegister, function(nuevoUsuarioRegistrado){
+            if(nuevoUsuarioRegistrado !== null){
+      //          mainService.datosDelUsuario(nuevoUsuarioRegistrado);
+                //$state.go("lobby");
+                //console.log (nuevoUsuarioRegistrado.data);
             }
 
         },notificarError);
     };
     
+    
+
+
+    /*$scope.showAlert = function(mensaje) {
+        $mdDialog.show(
+            $mdDialog.alert()
+                .parent(angular.element(document.querySelector('#popupContainer')))
+                .clickOutsideToClose(true)
+                .title('Error al ingresar')
+                .textContent(mensaje)
+                .ariaLabel('Alert Dialog Demo')
+                .ok('Got it!')
+        );
+    };*/
 
     function notificarError(mensaje) {
+        //this.showAlert(mensaje.data);
         console.log(mensaje.data);
     }
 

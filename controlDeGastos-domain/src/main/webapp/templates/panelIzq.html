@@ -1,0 +1,9 @@
+<div>
+	<h1>{{usuarioObtenido.nombreDeUsuario}}</h1> - $ {{usuarioObtenido.gastoTotal}}
+</div>
+<div class= "col-md-7 panel panel default">
+	<h3>informar gasto</h3>
+	<input type="text" placeholder="Monto" ng-model="gasto.monto"/>
+	<input type="text" placeholder="Descripcion" ng-model="gasto.descripcion">
+	<button type="submit" ng-click="informarGasto()">Agregar gasto</button>
+</div>

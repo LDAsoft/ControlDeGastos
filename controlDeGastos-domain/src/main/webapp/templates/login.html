@@ -14,16 +14,17 @@
 
         <div class="form-element">
           <label class="form-label">Nombre de Usuario</label>
-          <input class="form-input" type="text" data-rule-required="true" data-msg-required="Introducí tu usuario"/>
+          <input class="form-input" type="text" data-rule-required="true" data-msg-required="Introducí tu usuario" 
+            ng-model= "usuarioABuscar.user"/>
         </div>
 
         <div class="form-element">
           <label class="form-label" for="password">Password</label>
-          <input class="form-input" type="password" id="password" data-rule-required="true" data-msg-required="Introducí tu clave"/>
+          <input class="form-input" type="password" id="password" data-rule-required="true" data-msg-required="Introducí tu clave" ng-model= "usuarioABuscar.pass"/>
         </div>
         <br>
         <!-- <button class="secondary">Cancelar</button> -->
-        <button class="primary" ng-click="ingresar()">Ingresar</button>
+        <button class="primary" ng-click="ingresar(usuarioABuscar)">Ingresar</button>
         <br>
         <br>
         <div class="text_center">
@@ -35,3 +36,14 @@
     </div>
   </div>
 </div>
+
+<!-- 
+<div ng-controller="AppCtrl" class="md-padding" id="popupContainer" ng-cloak>
+  <p class="inset">
+    Open a dialog over the app's content. Press escape or click outside to close the dialog and
+    send focus back to the triggering button.
+  </p>
+  <div class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center">
+    <md-button class="md-primary md-raised" ng-click="showAlert($event)"   >
+      Alert Dialog
+    </md-button> -->
