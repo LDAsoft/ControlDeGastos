@@ -1,0 +1,49 @@
+.panel {
+  width: 100%;
+  text-align: center;
+  border-color: #00796B;
+  border-style: solid;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+  .panel .panel-heading {
+    background-color: #00796B;
+    color: #FFFFFF;
+    height: 50px;
+    font-size: 21px; }
+  .panel .panel-body {
+    padding: 20px; }
+
+.btn, .primary, .secondary {
+  width: 80px;
+  height: 35px;
+  font-size: 16px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+
+.primary {
+  background-color: #00796B;
+  color: #FFFFFF; }
+
+.secondary {
+  background-color: #F0F0F9; }
+
+.form {
+  width: 50%; }
+  .form .form-input {
+    width: 100%;
+    display: block; }
+  .form .form-label {
+    float: left;
+    font-size: 17px; }
+
+.container {
+  width: 50%; }
+
+.center {
+  margin-left: 0;
+  margin-right: 0;
+  margin: auto; }
