@@ -1,3 +1,3 @@
 'use strict';
 
-var app = angular.module('gastosApp', ['ui.router']);
+var gastosApp = angular.module('gastosApp', ['ui.router']);

@@ -1,4 +1,4 @@
-gastosApp.service('usuariosService', function ($http) {
+gastosApp.service('mainServices', function ($http) {
 
   this.obtenerDatosUsuario = function (usuarioABuscar, callback, errorHandler) {
     $http.post('/login/', usuarioABuscar).then(callback, errorHandler);

@@ -1,17 +1,33 @@
- <div >
-    <h2 class="text-primary"> Control de Gastos! </h2>
-    <h2 class="text-primary">Registrate gratis </h2>
-    <form action="/signup"></form>
-        <div>
-            <label>Nombre de Usuario:</label>
-            <input type="text" placeholder="Nombre*" />    
-        </div>
-        <div>
-            <label>Contrasenia:</label>
-            <input type="password" placeholder="Contrasenia*" />
-        </div>
-        <div>
-            <button type="button" ng-click="ingresar()">Registrarse</button>
-        </div>
+<div class="page-header text-center">
+    <h1>Control De Gastos
+      <small>Recu de AngularJS + XTRest</small>
+    </h1>
 </div>
 
+<div class="container center">
+  <div class="panel">
+    <div class="panel-heading">
+      Control de gastos! - Registracion
+    </div>
+    <div class="panel-body">
+      <form class="form center">
+
+        <div class="form-element">
+          <label class="form-label">Nuevo nombre de Usuario</label>
+          <input class="form-input" type="text" data-rule-required="true" data-msg-required="Introducí tu nuevo usuario"/>
+        </div>
+
+        <div class="form-element">
+          <label class="form-label" for="password">Nuevo Password</label>
+          <input class="form-input" type="password" id="password" data-rule-required="true" data-msg-required="Introducí tu nueva clave"/>
+        </div>
+        <br>
+        <!-- <button class="secondary">Cancelar</button> -->
+        <!-- //si esta todo ok la registracion, loguear -->
+        <button class="primary" ng-click="ingresar()"><small>Registrarse</small></button>
+        <br>
+        <br>
+      </form>
+    </div>
+  </div>
+</div>

@@ -43,6 +43,21 @@
 .container {
   width: 50%; }
 
+.containerPrincipal {
+  width: 90%; 
+  background-color: #00796B;
+  }
+
+  .color1{
+    background-color: #3F51B5;
+  }
+  .color2{
+  background-color: #FFFF00}
+
+  .color3{
+  background-color: #B0BEC5}
+
+
 .center {
   margin-left: 0;
   margin-right: 0;
