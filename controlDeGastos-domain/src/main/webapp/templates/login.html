@@ -1,41 +1,37 @@
-<div class="navbar navbar-default fondoBlanco"  ng-include="'views/navBarLogin.html'" ng-controller="LoginController as logCtrl"></div>
+<div class="page-header text-center">
+    <h1>Control De Gastos
+      <small>Recu de AngularJS + XTRest</small>
+    </h1>
+  </div>
 
-<section class="ventana_login">
-	<div class="container">
-    <div class="col-md-12 text-center ">
-      <header class="col-md-4 text-center text-primary">
-        <h4>Acceso para usuarios registrados</h4>
-      </header>
+<div class="container center">
+  <div class="panel">
+    <div class="panel-heading">
+      Control de gastos! <small><small>Acceso para usuarios registrados</small></small>
     </div>
-  
-    <div>
-      <div class="col-md-4 box table-datos" >
-        <ul id="nomUsuario" class="">
-          <li class="email_psw">Usuario</li>
-        	<li class="campo">
-            <input name="usuario" type="text" data-rule-required="true" class="" data-msg-required="Introducí tu usuario" />
-          </li>
-        </ul>
-                
-        <ul id="passw" class="campo">
-        	<li class="email_psw">Contraseña</li>
-	        <li class="campo">
-    	        <input name="pwd" type="password" id="pwd" class="" data-rule-required="true" data-msg-required="Introducí tu clave" />
-              <span> <small> ¿Has olvidado tu clave?</small></span>
-          </li>
-        </ul>
-      </div>       
-    </div>
-  </div>  
-  <div class="text-center">
-    <div class="btn_position">
-      <button type="button" class="btn btn-primary btn_position btn-sm"  aria-hidden="true"  ng-click="ingresar()">Ingresar</button>
-    </div>
-    
-   	      <!-- aca si la contraseña es valida, mandar al lobby(mpa) o cambiar a la parte lobby(spa), aunque no lo tengo muy claro. Vi una directiva que era ng-if o algo asi. -->
-    <!-- <div class="col-md-4 text-center"> -->
-    <div class="registrar_position">
-        <small> Si no estás registrado en GatoEncerrado <a href="partials/registroUsuario.html">registrate aquí</a></small>
+    <div class="panel-body">
+      <form class="form center">
+
+        <div class="form-element">
+          <label class="form-label">Nombre de Usuario</label>
+          <input class="form-input" type="text" data-rule-required="true" data-msg-required="Introducí tu usuario"/>
+        </div>
+
+        <div class="form-element">
+          <label class="form-label" for="password">Password</label>
+          <input class="form-input" type="password" id="password" data-rule-required="true" data-msg-required="Introducí tu clave"/>
+        </div>
+        <br>
+        <!-- <button class="secondary">Cancelar</button> -->
+        <button class="primary" ng-click="ingresar()">Ingresar</button>
+        <br>
+        <br>
+        <div class="text_center">
+          <small> ¿No tenes usuario? 
+            <a ui-sref="registro">Registrate ahora!</a>
+          </small>
+        </div>
+      </form>
     </div>
   </div>
-</section>
+</div>
