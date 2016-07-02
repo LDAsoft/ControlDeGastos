@@ -4,23 +4,17 @@ gastosApp.controller("UsuarioController", function (usuariosService,$state,$scop
     
     self.usuarioABuscar = {
         user : "marcos",
-        pass : "123456"
+        pass : "12345"
     };
 
     $scope.irARegistro = function() {
         $state.go("registro");
     };
 
-    /*self.ingresar = login;
-    function ingresar () {
-        $state.go("lobby");
-    	/*this.obtenerDatosUsuario(self.usuarioABuscar);*/       
-    
-
-    
     $scope.ingresar = function () {
         usuariosService.obtener(self.usuarioABuscar, function(usuario){
             if(usuario !== null){
+                $state.go("lobby");
                 console.log (usuario);
             }
 
@@ -29,20 +23,7 @@ gastosApp.controller("UsuarioController", function (usuariosService,$state,$scop
     
 
     function notificarError(mensaje) {
-        console.log(mensaje);
+        console.log(mensaje.data);
     }
 
-
-
 });
-
-
-
-
-
-
-
-
-/*    function transformarADatosDeUsuario(jsonDatosDeUsuario) {
-        return DatosDeUsuario.asDatosDeUsuario(jsonDatosDeUsuario);
-    }*/
