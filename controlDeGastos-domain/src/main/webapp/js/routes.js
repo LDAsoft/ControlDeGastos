@@ -2,11 +2,11 @@
 
 gastosApp.config(function ($stateProvider, $urlRouterProvider) {
 
-  $urlRouterProvider.otherwise("/log");
+  $urlRouterProvider.otherwise("/");
 
   $stateProvider
     .state('login', {
-      url: '/log',
+      url: '/',
       templateUrl: 'templates/login.html',
       controller: 'UsuarioController'
     })
