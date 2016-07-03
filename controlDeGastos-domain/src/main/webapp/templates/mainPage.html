@@ -1,16 +1,17 @@
+<div ng-include="'includes/header.html'" ng-controller="MainController"></div>
+
 <div class="row">
-  
-  <div class="col-md-4 color1">
+  <div class="col-md-3">
     <div ui-view="panelIzq"></div>
     <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
   </div>
 
-  <div class="col-md-4 color2">
+  <div class="col-md-5">
     <div ui-view="panelCentral"></div>
     <br> <br> <br> <br> <br> <br> <br> <br>
   </div>
 
-  <div class="col-md-4 color3">
+  <div class="col-md-4">
     <div ui-view="panelDer"></div>
     <br> <br> <br> <br> <br> <br>
   </div>

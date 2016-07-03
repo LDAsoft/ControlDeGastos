@@ -1,28 +1,25 @@
 gastosApp.controller("UsuarioController", function (mainService,$state,$scope) {
 
-    this.ingresar = function (findUser) {
+    $scope.ingresar = function (findUser) {
         mainService.ingresar(findUser, function(usuarioObtenido){
             if(usuarioObtenido !== null){
-                //mainService.datosDelUsuario(usuarioObtenido.data);
-                console.log (usuarioObtenido.data);
-                //$state.go("lobby");
+                mainService.datosDelUsuario(usuarioObtenido.data);
+                $state.go("mainPage");
             }
 
         },notificarError);
     };
 
-    this.registrar = function (userToRegister) {
+    $scope.registrar = function (userToRegister) {
         mainService.registrar(userToRegister, function(nuevoUsuarioRegistrado){
             if(nuevoUsuarioRegistrado !== null){
-      //          mainService.datosDelUsuario(nuevoUsuarioRegistrado);
-                //$state.go("lobby");
-                //console.log (nuevoUsuarioRegistrado.data);
+                mainService.datosDelUsuario(nuevoUsuarioRegistrado);
+                $state.go("mainPage");
+                //console.log (nuevoUsuarioRegistrado.data.idUsuario);
             }
 
         },notificarError);
-    };
-    
-    
+    };    
 
 
     /*$scope.showAlert = function(mensaje) {

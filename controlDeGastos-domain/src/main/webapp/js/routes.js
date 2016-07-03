@@ -17,19 +17,17 @@ gastosApp.config(function ($stateProvider, $urlRouterProvider) {
       controller: 'UsuarioController'
     })
 
-    .state('lobby', {
-      url: '/lobby',
+    .state('mainPage', {
+      url: '/mainPage',
       views: {
-        '': { templateUrl: 'templates/mainPage.html', controller: 'MainController' },
-        'panelIzq@lobby': { 
-          templateUrl: 'templates/panelIzq.html', controller: 'MainController'
-        },
+        '': { templateUrl: 'templates/mainPage.html', controller: 'MainController'},
+        'panelIzq@mainPage': { 
+          templateUrl: 'templates/panelIzq.html', controller: 'MainController'},
 
-
-        'panelCentral@lobby': { 
-          template:'<div><h3>Aca va lo de buscar gasto por filtro y la tabla del detalle</h3></div>',controller: 'MainController'
+        'panelCentral@mainPage': { 
+          templateUrl: 'templates/panelCentral.html', controller: 'MainController'
         },
-        'panelDer@lobby': { 
+        'panelDer@mainPage': { 
           template:'<div><h3>Aca va el indice inflacionario y los detalles de inflacion</h3></div>',controller: 'MainController'
         }
       }

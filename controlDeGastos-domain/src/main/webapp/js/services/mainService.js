@@ -1,16 +1,27 @@
 gastosApp.service('mainService', function ($http) {
 
 	var usuario = {};
+	var gastos = [];
+	var montoTotal = {};
 
-	this.obtenerUsuario= function(){
+	this.obtenerUsuario = function(){
 		return usuario;
 	};
 
+	this.obtenerGastos = function(){
+		return gastos;
+	};
+
+	this.obtenerGastoTotal = function(){
+		return montoTotal;
+	};
+
 	this.datosDelUsuario = function(datos){
-		usuario.gastos = datos.gastos;
 		usuario.nombreDeUsuario = datos.nombreDeUsuario;
 		usuario.idUsuario = datos.idUsuario;
-		usuario.gastoTotal = datos.gastoTotal;
+		
+		gastos = datos.gastos;
+		montoTotal = datos.gastoTotal;	
 	};
 
   	this.ingresar = function (usuarioABuscar, callback, errorHandler) {
@@ -19,6 +30,10 @@ gastosApp.service('mainService', function ($http) {
 
 	this.registrar = function (nuevoUsuario, callback, errorHandler) {
     	$http.put('/registrar', nuevoUsuario).then(callback, errorHandler);
+  	};
+
+  	this.ingresarGasto = function (spending, callback, errorHandler) {
+    	$http.put('/registrarGasto', spending).then(callback, errorHandler);
   	};
 
 });
