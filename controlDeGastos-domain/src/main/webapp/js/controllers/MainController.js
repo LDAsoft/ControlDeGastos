@@ -1,12 +1,10 @@
 gastosApp.controller("MainController", function (mainService,$state,$scope) {
     
     $scope.usuario = mainService.obtenerUsuario();
-    	
     $scope.gastos = mainService.obtenerGastos();
-    	
     $scope.montoTotal = mainService.obtenerGastoTotal();
-    
     $scope.gastoNuevo = {};
+    $scope.aFiltrar = {};
 
     $scope.nuevoGasto = function () {
     	this.gastoNuevo.idUsuario = this.usuario.idUsuario;
@@ -14,6 +12,17 @@ gastosApp.controller("MainController", function (mainService,$state,$scope) {
             if(gastosRefresh !== null){
             	actualizarGastos(gastosRefresh.data);
             	$scope.gastoNuevo = null;
+            }
+
+        },notificarError);
+    };
+
+    $scope.filtrar = function () {
+        this.aFiltrar.id = this.usuario.idUsuario;
+        mainService.filtrar(this.aFiltrar, function(gastosRefresh){
+            if(gastosRefresh !== null){
+                actualizarGastos(gastosRefresh.data);
+                $scope.aFiltrar = null;
             }
 
         },notificarError);
