@@ -6,22 +6,23 @@ gastosApp.controller("MainController", function (mainService,$state,$scope) {
     	
     $scope.montoTotal = mainService.obtenerGastoTotal();
     
+    $scope.gastoNuevo = {};
+
     $scope.nuevoGasto = function () {
     	this.gastoNuevo.idUsuario = this.usuario.idUsuario;
         mainService.ingresarGasto(this.gastoNuevo, function(gastosRefresh){
             if(gastosRefresh !== null){
-                $scope.gastos = gastosRefresh.data.gastos;
-                console.log($scope.gastos);
-                console.log(gastosRefresh.data.gastos);
-                $scope.montoTotal = gastosRefresh.data.montoTotal;
-                console.log(gastosRefresh.data.montoTotal);
-                $scope.gastoNuevo = null;
+            	actualizarGastos(gastosRefresh.data);
+            	$scope.gastoNuevo = null;
             }
 
         },notificarError);
     };
 
-    //$scope.gastoNuevo.idUsuario = this.usuario.idUsuario;
+    function actualizarGastos(gastosObtenidos){
+    	$scope.gastos = gastosObtenidos.gastos;
+        $scope.montoTotal = gastosObtenidos.montoTotal;
+	}
 
     function notificarError(mensaje) {
         //this.showAlert(mensaje.data);
