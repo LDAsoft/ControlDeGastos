@@ -18,7 +18,8 @@ public class DetalleInflacionAnual {
   public DetalleInflacionAnual(final List<DetalleInflacionMensual> unDetalleMensual) {
     this.detalleInflacionMensual = unDetalleMensual;
     double _calcularInflacionAcumulada = this.calcularInflacionAcumulada(unDetalleMensual);
-    this.inflacionAcumulada = Double.valueOf(_calcularInflacionAcumulada);
+    double _redondear = this.redondear(_calcularInflacionAcumulada);
+    this.inflacionAcumulada = Double.valueOf(_redondear);
   }
   
   public double calcularInflacionAcumulada(final List<DetalleInflacionMensual> listaDetalles) {
@@ -28,6 +29,11 @@ public class DetalleInflacionAnual {
     };
     DoubleStream _mapToDouble = _stream.mapToDouble(_function);
     return _mapToDouble.sum();
+  }
+  
+  public double redondear(final double numero) {
+    double _rint = Math.rint((numero * 100));
+    return (_rint / 100);
   }
   
   @Pure

@@ -1,0 +1,16 @@
+<div class= "panel">
+	<div class="panel-indice">
+		<h2 style="margin-top: 0px">Indice Inflacionario</h2>
+		<input class="col-lg-12" type="text" placeholder="Ingrese anio a consultar" ng-model="indice.anio" />
+		<br><br>
+		<input class="col-lg-12" type="text" placeholder="Ingrese descripcion a consultar" ng-model="indice.descripcion" />
+		<br><br>  
+		<button class="col-lg-12 btn-success btn center"  ng-click="calcular()">Calcular</button> <br> <br>
+		<button class="col-lg-12 btn-info btn center"  ng-click="limpiarIndice()">Limpiar</button>
+		<br>
+	</div>
+</div>
+<div ng-if="mostrarDatosInflacion">
+<h4>Inflacion en {{indice.anio}} segun {{indice.descripcion}}</h4>
+
+</div>

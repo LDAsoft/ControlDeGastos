@@ -5,6 +5,8 @@ gastosApp.controller("MainController", function (mainService,$state,$scope) {
     $scope.montoTotal = mainService.obtenerGastoTotal();
     $scope.gastoNuevo = {};
     $scope.aFiltrar = {};
+    $scope.indice = {};
+    $scope.mostrarDatosInflacion = false;
 
     $scope.nuevoGasto = function () {
     	this.gastoNuevo.idUsuario = this.usuario.idUsuario;
@@ -27,6 +29,28 @@ gastosApp.controller("MainController", function (mainService,$state,$scope) {
 
         },notificarError);
     };
+
+    $scope.calcular = function () {
+        this.indice.id = this.usuario.idUsuario;
+        mainService.calcular(this.indice, function(datosInflacionarios){
+            if(datosInflacionarios !== null){
+                mostrarInflacion(datosInflacionarios.data);
+            }
+
+        },notificarError);
+    };
+
+    $scope.limpiarIndice = function(){
+        $scope.indice = null;
+        $scope.mostrarDatosInflacion = false;
+        //mas cosas
+    };
+
+    function mostrarInflacion(datos){
+        $scope.mostrarDatosInflacion = true;
+        console.log(datos.detalleInflacionMensual);
+        console.log(datos.inflacionAcumulada);
+    }
 
     function actualizarGastos(gastosObtenidos){
     	$scope.gastos = gastosObtenidos.gastos;

@@ -27,7 +27,7 @@ gastosApp.config(function ($stateProvider, $urlRouterProvider) {
         'panelCentral@mainPage': { 
           templateUrl: 'templates/panelCentral.html'},
         'panelDer@mainPage': { 
-          template:'<div><h3>Aca va el indice inflacionario y los detalles de inflacion</h3></div>'}
+          templateUrl: 'templates/panelDer.html'}
       }
     });
 });
