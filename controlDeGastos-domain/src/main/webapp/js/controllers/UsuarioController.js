@@ -22,7 +22,8 @@ gastosApp.controller("UsuarioController", function (mainService,$state,$scope) {
     };    
 
 
-    /*$scope.showAlert = function(mensaje) {
+    /*  revisar las paginas sobre como inyectar dependencias necsarias
+    $scope.showAlert = function(mensaje) {
         $mdDialog.show(
             $mdDialog.alert()
                 .parent(angular.element(document.querySelector('#popupContainer')))

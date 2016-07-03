@@ -36,4 +36,8 @@ gastosApp.service('mainService', function ($http) {
     	$http.put('/registrarGasto', spending).then(callback, errorHandler);
   	};
 
+  	this.filtrar = function(aFiltrar, callback, errorHandler) {
+         $http.get('/gastos/' + aFiltrar.id + '/' + aFiltrar.descripcion).then(callback,errorHandler);
+ 	};
+
 });

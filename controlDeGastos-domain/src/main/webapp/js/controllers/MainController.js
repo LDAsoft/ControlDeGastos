@@ -1,27 +1,37 @@
 gastosApp.controller("MainController", function (mainService,$state,$scope) {
     
     $scope.usuario = mainService.obtenerUsuario();
-    	
     $scope.gastos = mainService.obtenerGastos();
-    	
     $scope.montoTotal = mainService.obtenerGastoTotal();
-    
+    $scope.gastoNuevo = {};
+    $scope.aFiltrar = {};
+
     $scope.nuevoGasto = function () {
     	this.gastoNuevo.idUsuario = this.usuario.idUsuario;
         mainService.ingresarGasto(this.gastoNuevo, function(gastosRefresh){
             if(gastosRefresh !== null){
-                $scope.gastos = gastosRefresh.data.gastos;
-                console.log($scope.gastos);
-                console.log(gastosRefresh.data.gastos);
-                $scope.montoTotal = gastosRefresh.data.montoTotal;
-                console.log(gastosRefresh.data.montoTotal);
-                $scope.gastoNuevo = null;
+            	actualizarGastos(gastosRefresh.data);
+            	$scope.gastoNuevo = null;
             }
 
         },notificarError);
     };
 
-    //$scope.gastoNuevo.idUsuario = this.usuario.idUsuario;
+    $scope.filtrar = function () {
+        this.aFiltrar.id = this.usuario.idUsuario;
+        mainService.filtrar(this.aFiltrar, function(gastosRefresh){
+            if(gastosRefresh !== null){
+                actualizarGastos(gastosRefresh.data);
+                $scope.aFiltrar = null;
+            }
+
+        },notificarError);
+    };
+
+    function actualizarGastos(gastosObtenidos){
+    	$scope.gastos = gastosObtenidos.gastos;
+        $scope.montoTotal = gastosObtenidos.montoTotal;
+	}
 
     function notificarError(mensaje) {
         //this.showAlert(mensaje.data);

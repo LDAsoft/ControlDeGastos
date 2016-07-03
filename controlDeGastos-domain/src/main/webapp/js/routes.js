@@ -22,14 +22,12 @@ gastosApp.config(function ($stateProvider, $urlRouterProvider) {
       views: {
         '': { templateUrl: 'templates/mainPage.html', controller: 'MainController'},
         'panelIzq@mainPage': { 
-          templateUrl: 'templates/panelIzq.html', controller: 'MainController'},
+          templateUrl: 'templates/panelIzq.html'},
 
         'panelCentral@mainPage': { 
-          templateUrl: 'templates/panelCentral.html', controller: 'MainController'
-        },
+          templateUrl: 'templates/panelCentral.html'},
         'panelDer@mainPage': { 
-          template:'<div><h3>Aca va el indice inflacionario y los detalles de inflacion</h3></div>',controller: 'MainController'
-        }
+          template:'<div><h3>Aca va el indice inflacionario y los detalles de inflacion</h3></div>'}
       }
     });
 });

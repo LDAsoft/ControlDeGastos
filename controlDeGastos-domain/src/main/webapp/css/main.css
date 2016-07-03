@@ -21,6 +21,15 @@
   
   font-weight: bold;
 }
+.panel-busqueda{
+  height: 110px;
+  background-color: #ddf200;
+  padding: 10px;
+}
+
+.align-left{
+  text-align: left;
+}
 
 .panel {
   width: 100%;
