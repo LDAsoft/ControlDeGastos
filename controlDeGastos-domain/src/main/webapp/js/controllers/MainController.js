@@ -48,6 +48,8 @@ gastosApp.controller("MainController", function (mainService,$state,$scope) {
 
     function mostrarInflacion(datos){
         $scope.mostrarDatosInflacion = true;
+        $scope.inflacionAcumulada = datos.inflacionAcumulada;
+        $scope.detalleInflacionMensual = datos.detalleInflacionMensual;
         console.log(datos.detalleInflacionMensual);
         console.log(datos.inflacionAcumulada);
     }

@@ -11,6 +11,14 @@
 	</div>
 </div>
 <div ng-if="mostrarDatosInflacion">
-<h4>Inflacion en {{indice.anio}} segun {{indice.descripcion}}</h4>
+	<h5>Inflacion en {{indice.anio}} segun {{indice.descripcion}}</h5>
+	<h6 class= "col-lg-6 text-center">Indice Acumulado: </h6>	
+	<p class= "col-lg-3 text-left" style="color: red">{{inflacionAcumulada}}%</p><br>
+	
+	<strong>Detalle</strong><br>
+	<div data-ng-repeat="inflacionMensual in detalleInflacionMensual" class="animate-repeat row">
+        <h5>{{inflacionMensual.mes}} - {{inflacionMensual.indiceMensual}}%</h5> <h6>({{inflacionMensual.monto}})</h6>
+    </div>
+
 
 </div>
