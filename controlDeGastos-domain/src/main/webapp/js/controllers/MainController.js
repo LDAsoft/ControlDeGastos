@@ -64,9 +64,10 @@ gastosApp.controller("MainController", function (mainService,$state,$scope) {
         $scope.montoTotal = gastosObtenidos.montoTotal;
 	}
 
-    function notificarError(mensaje) {
-        //this.showAlert(mensaje.data);
-        console.log(mensaje.data);
+    function notificarError(error) {
+        $scope.mostrarError = error.data;
+        console.log(error.data);
+        console.log(error);
     }
 
 });

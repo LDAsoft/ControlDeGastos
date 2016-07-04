@@ -5,11 +5,21 @@ import org.junit.Before
 import org.junit.Test
 import controlDeGastosDomain.DetalleInflacionMensual
 
+import static org.assertj.core.api.Assertions.*
+import exceptions.ErrorDeFiltro
+
 class TestRepoUsuarios {
 	
 
 	@Before
 	def void setUp(){
+	}
+	
+	@Test
+    def void testRapidoGastos(){
+    	var gastos = RepoUsuarios.instance.obtenerGastosPara(1)
+    	var resul =RepoUsuarios.instance.filtrarGastosPorDescripcion(gastos, "carne")
+		assertThatExceptionOfType(ErrorDeFiltro)	
 	}
 	
 	@Test

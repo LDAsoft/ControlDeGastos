@@ -3,7 +3,10 @@ package appHelpers.test;
 import appHelpers.RepoUsuarios;
 import controlDeGastosDomain.DetalleInflacionAnual;
 import controlDeGastosDomain.DetalleInflacionMensual;
+import controlDeGastosDomain.Gasto;
+import exceptions.ErrorDeFiltro;
 import java.util.List;
+import org.assertj.core.api.Assertions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +15,15 @@ import org.junit.Test;
 public class TestRepoUsuarios {
   @Before
   public void setUp() {
+  }
+  
+  @Test
+  public void testRapidoGastos() {
+    RepoUsuarios _instance = RepoUsuarios.getInstance();
+    List<Gasto> gastos = _instance.obtenerGastosPara(Integer.valueOf(1));
+    RepoUsuarios _instance_1 = RepoUsuarios.getInstance();
+    List<Gasto> resul = _instance_1.filtrarGastosPorDescripcion(gastos, "carne");
+    Assertions.<ErrorDeFiltro>assertThatExceptionOfType(ErrorDeFiltro.class);
   }
   
   @Test
