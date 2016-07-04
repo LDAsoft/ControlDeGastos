@@ -1,6 +1,6 @@
 .navbarM {
-  width: 90%;
-  height: auto;
+  height: auto;  
+  width: 100%;
   border-radius: 4px;
   background-color: #f8f8f8;
   border-color: #e7e7e7;
@@ -10,32 +10,30 @@
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
-  border-radius: 5px; }
-
-
-.navbar-heigth{
-  height: 50px;  
+  border-radius: 5px; 
 }
 
 .position-text-navbar{
-  margin-top: 20px;  
+  margin-top: 0.5%;  
+  margin-bottom: 0.5%;
+  padding: 0.5%;
 }
 
 .position-text-navbar-right{
   float: right;
-  margin-right: 60px;
+  margin-right: 1%;
 }
 
 .position-text-navbar-left{
   float: left;
-  margin-left: 35px;
+  margin-left: 1%;
 }
 
 .navbar-aux-text{
   font-style: italic;
-  
   font-weight: bold;
 }
+
 .panel-busqueda{
   height: 110px;
   background-color: #ddf200;
@@ -53,7 +51,7 @@
 }
 
 .panel {
-  width: 90%;
+  width: 100%;
   text-align: center;
   border-color: #00796B;
   border-style: solid;
@@ -70,8 +68,8 @@
     padding: 20px; }
 
 .btn, .primary, .secondary {
-  width: 80px;
-  height: 35px;
+  width: auto;
+  height: auto;
   font-size: 16px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -102,14 +100,21 @@
   background-color: #00796B;
   }
 
-  .color1{
-    background-color: #3F51B5;
-  }
-  .color2{
-  background-color: #FFFF00}
+.contenedorPrincipal {
+  width: 90%; 
+  
+  margin-top: 10px auto;
+  margin: auto;
+  padding: 1%
 
-  .color3{
-  background-color: #B0BEC5}
+}
+
+.contenedorSecundario {
+  width: 98%; 
+  margin-top: 10px auto;
+  margin: auto;
+  padding: 1%
+}
 
 .center {
   margin-left: 0;
@@ -118,4 +123,42 @@
 
 .fondo-index{
   background-color: #B0BEC5  
+}
+
+.footer {
+  padding-top: 20px;
+  color: #776;
+  border-top: 2px solid #e5e5e5;
+    position: relative;
+}
+
+.medidas_footer {
+    
+    margin-top: 10%;
+    margin-right: 10%;
+    margin-bottom: 0%;
+    margin-left: 10%;
+    width: auto;
+}
+
+@media screen and (max-width: 800px) {
+  .form{
+    width: 100%;
+  }
+
+  .footer{
+    font-size: 12px;
+  }
+
+  .panelIzq {
+    width: 100%; 
+  }
+
+  .panelCentral {
+    width: 100%; 
+  }
+
+  .panelDer {
+    width: 100%; 
+  }
 }
