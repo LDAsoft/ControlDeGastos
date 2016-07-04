@@ -4,7 +4,7 @@ gastosApp.controller("UsuarioController", function (mainService,$state,$scope) {
         mainService.ingresar(findUser, function(usuarioObtenido){
             if(usuarioObtenido !== null){
                 mainService.datosDelUsuario(usuarioObtenido.data);
-                $state.go("mainPage");
+                $state.go("mainPage");                
             }
 
         },notificarError);
@@ -15,7 +15,6 @@ gastosApp.controller("UsuarioController", function (mainService,$state,$scope) {
             if(nuevoUsuarioRegistrado !== null){
                 mainService.datosDelUsuario(nuevoUsuarioRegistrado);
                 $state.go("mainPage");
-                //console.log (nuevoUsuarioRegistrado.data.idUsuario);
             }
 
         },notificarError);

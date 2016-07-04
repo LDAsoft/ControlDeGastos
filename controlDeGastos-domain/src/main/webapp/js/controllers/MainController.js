@@ -46,6 +46,11 @@ gastosApp.controller("MainController", function (mainService,$state,$scope) {
         //mas cosas
     };
 
+    $scope.logout = function(){
+        $state.go("login");
+    };
+
+
     function mostrarInflacion(datos){
         $scope.mostrarDatosInflacion = true;
         $scope.inflacionAcumulada = datos.inflacionAcumulada;
