@@ -40,4 +40,8 @@ gastosApp.service('mainService', function ($http) {
          $http.get('/gastos/' + aFiltrar.id + '/' + aFiltrar.descripcion).then(callback,errorHandler);
  	};
 
+ 	this.calcular = function(indice, callback, errorHandler) {
+         $http.get('/datosInflacionarios/' + indice.id + '/' + indice.descripcion + '/' + indice.anio).then(callback,errorHandler);
+ 	};
+
 });

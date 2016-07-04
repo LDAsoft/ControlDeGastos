@@ -27,6 +27,12 @@
   padding: 10px;
 }
 
+.panel-indice{
+  height: 230px;
+  background-color: #ff8000;
+  padding: 5%;
+}
+
 .align-left{
   text-align: left;
 }
