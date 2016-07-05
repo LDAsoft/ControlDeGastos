@@ -15,7 +15,6 @@ gastosApp.controller("UsuarioController", function (mainService,$state,$scope) {
             if(nuevoUsuarioRegistrado !== null){
                 mainService.datosDelUsuario(nuevoUsuarioRegistrado.data);
                 $state.go("mainPage");
-                console.log(nuevoUsuarioRegistrado.data);
             }
 
         },errorHandler);

@@ -19,7 +19,8 @@ class TestRepoUsuarios {
     def void testRapidoGastos(){
     	var gastos = RepoUsuarios.instance.obtenerGastosPara(1)
     	var resul =RepoUsuarios.instance.filtrarGastosPorDescripcion(gastos, "carne")
-		assertThatExceptionOfType(ErrorDeFiltro)	
+		assertThatExceptionOfType(ErrorDeFiltro)
+		
 	}
 	
 	@Test
